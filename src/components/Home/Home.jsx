@@ -16,35 +16,49 @@ const Home = () => {
 
   return (
     <div className="container">
-      <div className="card-container">
-        <div className="card">
-          <div className="card-img">
-            <img
-              src="https://i.ibb.co/Rvc67Cr/ar.jpg"
-              alt=""
-              className="photo"
-            />
-          </div>
+      <div className="home-container">
+        <div className="card-container">
+          {allActors.map((actor) => {
+            return (
+              <>
+                <div
+                  key={actor.id}
+                  className="card"
+                >
+                  <div className="card-img">
+                    <img
+                      src={actor.image}
+                      alt=""
+                      className="photo"
+                    />
+                  </div>
 
-          <h2>Antony</h2>
+                  <h2>{actor.name}</h2>
 
-          <p>
-            <small>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-              quos!
-            </small>
-          </p>
+                  <p>
+                    <small>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Minus, quos!
+                    </small>
+                  </p>
 
-          <div className="info">
-            <p>salary:200</p>
+                  <div className="info">
+                    <p>salary:${actor.salary}</p>
 
-            <p>Writer</p>
-          </div>
+                    <p>{actor.role}</p>
+                  </div>
 
-          <button className="card-btn">Select</button>
+                  <button className="card-btn">Select</button>
+                </div>
+              </>
+            );
+          })}
+        </div>
+
+        <div className="cart">
+          <h1>Cart</h1>
         </div>
       </div>
-      .cart
     </div>
   );
 };

@@ -10,8 +10,9 @@ body {
 
 .card {
   width: 250px;
-  height: 300px;
+  height: 330px;
   border: 1px solid gray;
+  padding:10px
 }
 
 .photo {
@@ -26,4 +27,16 @@ body {
 
 .card-btn {
   background-color: aqua;
+  color: black;
+}
+
+.home-container {
+  display: flex;
+}
+
+.card-container {
+  width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 }
