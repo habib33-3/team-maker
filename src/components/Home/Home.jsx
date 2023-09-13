@@ -17,7 +17,13 @@ const Home = () => {
   }, []);
 
   const handleSelectActor = (actor) => {
-    setSelectedActors([...selectedActors, actor]);
+    const isExist = selectedActors.find((item) => item.id === actor.id);
+
+    if (isExist) {
+      alert("already added");
+    } else {
+      setSelectedActors([...selectedActors, actor]);
+    }
   };
 
   return (
