@@ -5,6 +5,8 @@ import Cart from "../Cart/Cart";
 const Home = () => {
   const [allActors, setAllActors] = useState([]);
   const [selectedActors, setSelectedActors] = useState([]);
+  const [remaining, setRemaining] = useState(0);
+  const [cost, setCost] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,10 +21,23 @@ const Home = () => {
   const handleSelectActor = (actor) => {
     const isExist = selectedActors.find((item) => item.id === actor.id);
 
+    let count = actor.salary;
+
     if (isExist) {
-      alert("already added");
+      return alert("already added");
     } else {
-      setSelectedActors([...selectedActors, actor]);
+      selectedActors.forEach((item) => {
+        count += item.salary;
+      });
+      const totalRemaining = 20000 - count;
+
+      if (count > 20000) {
+        return alert("budget exceed");
+      } else {
+        setSelectedActors([...selectedActors, actor]);
+        setRemaining(totalRemaining);
+        setCost(count);
+      }
     }
   };
 
@@ -73,7 +88,11 @@ const Home = () => {
         </div>
 
         <div className="cart">
-          <Cart selectedActors={selectedActors}></Cart>
+          <Cart
+            selectedActors={selectedActors}
+            remaining={remaining}
+            cost={cost}
+          ></Cart>
         </div>
       </div>
     </div>
