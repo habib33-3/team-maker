@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import "./Home.css";
+import Cart from "../Cart/Cart";
 
 const Home = () => {
   const [allActors, setAllActors] = useState([]);
+  const [selectedActors, setSelectedActors] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,6 +15,10 @@ const Home = () => {
 
     fetchData();
   }, []);
+
+  const handleSelectActor = (actor) => {
+    setSelectedActors([...selectedActors, actor]);
+  };
 
   return (
     <div className="container">
@@ -48,7 +54,12 @@ const Home = () => {
                     <p>{actor.role}</p>
                   </div>
 
-                  <button className="card-btn">Select</button>
+                  <button
+                    onClick={() => handleSelectActor(actor)}
+                    className="card-btn"
+                  >
+                    Select
+                  </button>
                 </div>
               </>
             );
@@ -56,7 +67,7 @@ const Home = () => {
         </div>
 
         <div className="cart">
-          <h1>Cart</h1>
+          <Cart selectedActors={selectedActors}></Cart>
         </div>
       </div>
     </div>
